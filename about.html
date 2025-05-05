@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- Объявляем тип документа как HTML5 -->
+<html lang="ru">
+<head>
+  <!-- Устанавливаем кодировку документа -->
+  <meta charset="utf-8" />
+  <!-- Обеспечиваем адаптивность на мобильных устройствах -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Заголовок вкладки браузера -->
+  <title>Blessy — О нас</title>
+  <!-- Подключаем шрифт Manrope из Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet" />
+  <!-- Подключаем Tailwind CSS для утилитарных стилей -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Подключаем Chart.js для построения графиков -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Встроенные стили: семейство шрифтов и фон страницы */
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #f5f8ff;
+    }
+  </style>
+</head>
+<body class="text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md fixed w-full z-50">
+    <!-- Фиксированный вверху хедер с тенью и высоким z-index -->
+    <div class="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between py-4 px-6">
+      <!-- Контейнер с логотипом и навигацией -->
+      <div class="text-2xl font-extrabold text-blue-800">Blessy</div>
+      <!-- Навигация для десктопа: скрыта на малых экранах -->
+      <nav class="hidden md:flex space-x-6 font-semibold text-gray-700">
+        <a href="index.html" class="hover:text-blue-800">Главная</a>
+        <a href="catalog.html" class="hover:text-blue-800">Каталог</a>
+        <a href="about.html" class="text-blue-800 font-extrabold">О нас</a>
+        <a href="contact.html" class="hover:text-blue-800">Контакты</a>
+        <a href="blog.html" class="hover:text-blue-800">Блог</a>
+        <a href="cart.html" class="hover:text-blue-800">Корзина</a>
+        <a href="account.html" class="hover:text-blue-800">Аккаунт</a>
+      </nav>
+      <!-- Кнопка-бургер для мобильного меню -->
+      <button id="menu-btn" class="md:hidden text-gray-700" aria-label="Открыть меню">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!-- Иконка бургер-меню -->
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <!-- Мобильное меню: скрыто по умолчанию -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <nav class="flex flex-col space-y-2 py-4 px-6 font-semibold text-gray-700">
+        <a href="index.html" class="hover:text-blue-800">Главная</a>
+        <a href="catalog.html" class="hover:text-blue-800">Каталог</a>
+        <a href="about.html" class="text-blue-800 font-extrabold">О нас</a>
+        <a href="contact.html" class="hover:text-blue-800">Контакты</a>
+        <a href="blog.html" class="hover:text-blue-800">Блог</a>
+        <a href="cart.html" class="hover:text-blue-800">Корзина</a>
+        <a href="account.html" class="hover:text-blue-800">Аккаунт</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-screen-lg mx-auto pt-28 px-4 sm:px-6 lg:px-8">
+    <!-- Секция заголовка и описания бренда -->
+    <section class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold text-blue-800 mb-4">О нас</h2>
+      <p class="text-lg text-gray-600">Blessy — стиль и качество.</p>
+      <p class="mt-4 text-gray-700 max-w-2xl mx-auto">Все началось с мечты. Мечты о том, чтобы создать место, где каждый мог бы найти не просто одежду, а частичку себя...</p>
+    </section>
+
+    <!-- Section: Рост бренда -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold text-blue-700 text-center mb-4">Рост нашего бренда</h3>
+      <div class="relative chart-container h-80">
+        <!-- Canvas для линейного графика -->
+        <canvas id="growthChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Section: Принципы бренда -->
+    <section class="mb-16">
+      <h3 class="text-2xl font-semibold text-blue-700 text-center mb-4">Принципы нашего бренда</h3>
+      <div class="relative chart-container h-80">
+        <!-- Canvas для круговой диаграммы -->
+        <canvas id="principlesChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center text-sm py-4">
+    <!-- Копирайт -->
+    © 2025 Blessy. Все права защищены.
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // Обработчик клика по кнопке меню: переключение видимости мобильного меню
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn?.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+
+    // Инициализация линейного графика роста бренда
+    new Chart(document.getElementById('growthChart'), {
+      type: 'line',
+      data: {
+        labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+        datasets: [{
+          label: 'Рост бренда',
+          data: [0, 50, 150, 300, 500, 750, 1000, 1250],
+          borderColor: 'rgba(59, 130, 246, 1)',
+          backgroundColor: 'rgba(59, 130, 246, 0.2)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          tooltip: { backgroundColor: 'rgba(0,0,0,0.7)', titleColor: '#fff', bodyColor: '#fff' }
+        },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    // Инициализация круговой диаграммы принципов бренда
+    new Chart(document.getElementById('principlesChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Качество', 'Доступность', 'Стиль', 'Удобство'],
+        datasets: [{
+          data: [30, 20, 25, 25],
+          backgroundColor: ['#3B82F6', '#34D399', '#FBBF24', '#F87171']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top', labels: { color: '#374151' } },
+          tooltip: { backgroundColor: 'rgba(0,0,0,0.7)', titleColor: '#fff', bodyColor: '#fff' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

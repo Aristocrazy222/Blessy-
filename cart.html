@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!-- Объявляем тип документа как HTML5 -->
+<html lang="ru">
+<head>
+  <!-- Устанавливаем кодировку документа -->
+  <meta charset="UTF-8" />
+  <!-- Обеспечиваем адаптивность на мобильных устройствах -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Заголовок страницы -->
+  <title>Blessy — Корзина</title>
+
+  <!-- Подключение шрифта Manrope из Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Подключение библиотеки Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Подключение стилей и скриптов для уведомлений Notyf -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+</head>
+<body class="bg-[#f0f4ff] text-gray-800 font-[Manrope] flex flex-col min-h-screen">
+  <!-- Фон страницы светло-голубой, текст тёмно-серый, шрифт Manrope, флекс-контейнер вертикально -->
+
+  <!-- Header -->
+  <header class="bg-white/90 backdrop-blur-md shadow-sm fixed top-0 w-full z-50">
+    <!-- Полупрозрачный хедер с эффектом размытия и тенью -->
+    <div class="max-w-screen-xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Контейнер для контента хедера -->
+      <div class="text-2xl font-extrabold text-blue-800">Blessy</div>
+      <!-- Логотип бренда -->
+      <nav class="hidden md:flex space-x-6 font-semibold text-gray-800">
+        <!-- Навигация для десктопа -->
+        <a href="index.html" class="hover:text-blue-800">Главная</a>
+        <a href="catalog.html" class="hover:text-blue-800">Каталог</a>
+        <a href="about.html" class="hover:text-blue-800">О нас</a>
+        <a href="contact.html" class="hover:text-blue-800">Контакты</a>
+        <a href="blog.html" class="hover:text-blue-800">Блог</a>
+        <a href="cart.html" class="text-blue-800 font-bold">Корзина</a>
+        <a href="account.html" class="hover:text-blue-800">Аккаунт</a>
+      </nav>
+      <!-- Кнопка-бургер для мобильного меню -->
+      <button id="menu-btn" class="md:hidden focus:outline-none text-gray-700" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <!-- Мобильное меню, скрыто по умолчанию -->
+    <div id="mobile-menu" class="hidden bg-white border-t px-6 py-4 space-y-2 text-gray-700 font-semibold md:hidden">
+      <a href="index.html" class="block hover:text-blue-800">Главная</a>
+      <a href="catalog.html" class="block hover:text-blue-800">Каталог</a>
+      <a href="about.html" class="block hover:text-blue-800">О нас</a>
+      <a href="contact.html" class="block hover:text-blue-800">Контакты</a>
+      <a href="blog.html" class="block hover:text-blue-800">Блог</a>
+      <a href="cart.html" class="block text-blue-800 font-bold">Корзина</a>
+      <a href="account.html" class="block hover:text-blue-800">Аккаунт</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-32 px-6 pb-20 max-w-4xl mx-auto w-full">
+    <!-- Контейнер для контента страницы, отступ сверху под хедер -->
+    <div class="bg-white rounded-2xl shadow-lg p-6">
+      <h1 class="text-3xl font-extrabold text-blue-800 text-center mb-6">Корзина</h1>
+      <!-- Заголовок раздела корзины -->
+      <div id="cart-items" class="space-y-4"></div>
+      <!-- Контейнер для списка товаров в корзине -->
+      <p id="empty-msg" class="text-center text-gray-500">Корзина пуста</p>
+      <!-- Сообщение при отсутствии товаров -->
+      <div id="summary" class="hidden flex justify-between items-center mt-6 border-t pt-4">
+        <!-- Итоговая сумма, скрыта по умолчанию -->
+        <span class="text-lg font-semibold">Итого:</span>
+        <span id="total-price" class="text-xl font-extrabold text-blue-800">0 ₸</span>
+      </div>
+      <!-- Кнопка перехода к оплате, скрыта по умолчанию -->
+      <button id="checkout-btn" class="hidden mt-6 w-full bg-blue-800 hover:bg-blue-700 text-white py-3 rounded-xl text-lg font-semibold shadow">Перейти к оплате</button>
+    </div>
+
+    <!-- Modal: Окно выбора способа оплаты -->
+    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+      <div class="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-md">
+        <h2 class="text-xl font-bold text-center text-blue-800 mb-4">Выберите способ оплаты</h2>
+        <form id="payment-form" class="space-y-4">
+          <div>
+            <label class="block font-medium mb-1">Способ оплаты</label>
+            <select id="method" required class="w-full border rounded-lg px-4 py-2">
+              <option value="Карта">Карта</option>
+              <option value="Наличные">Наличные</option>
+            </select>
+          </div>
+          <!-- Поле для ввода данных карты -->
+          <div id="card-info" class="space-y-4">
+            <div>
+              <label class="block font-medium mb-1">Номер карты</label>
+              <input type="text" id="card-number" required maxlength="19" placeholder="0000 0000 0000 0000" class="w-full border rounded-lg px-4 py-2" />
+            </div>
+            <div>
+              <label class="block font-medium mb-1">Имя держателя</label>
+              <input type="text" id="card-name" required placeholder="Иван Иванов" class="w-full border rounded-lg px-4 py-2" />
+            </div>
+            <div class="flex space-x-4">
+              <div class="w-1/2">
+                <label class="block font-medium mb-1">Срок действия</label>
+                <input type="text" id="card-expiry" required maxlength="5" placeholder="MM/YY" class="w-full border rounded-lg px-4 py-2" />
+              </div>
+              <div class="w-1/2">
+                <label class="block font-medium mb-1">CVC</label>
+                <input type="text" id="card-cvc" required maxlength="4" placeholder="123" class="w-full border rounded-lg px-4 py-2" />
+              </div>
+            </div>
+          </div>
+          <!-- Поле для ввода адреса доставки -->
+          <div>
+            <label class="block font-medium mb-1">Адрес доставки</label>
+            <input type="text" id="address" required placeholder="г. Алматы, ул. Примерная 10" class="w-full border rounded-lg px-4 py-2" />
+          </div>
+          <!-- Кнопки подтверждения и отмены оформления -->
+          <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-xl font-semibold">Подтвердить заказ</button>
+          <button type="button" id="cancel-btn" class="w-full mt-2 text-blue-700 hover:underline">Отмена</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#0d1117] text-white text-center text-sm py-4 shadow-inner mt-auto">
+    <!-- Футер страницы -->
+    <div class="max-w-5xl mx-auto">© 2025 Blessy. Все права защищены.</div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // Инициализация библиотеки уведомлений Notyf
+    const notyf = new Notyf();
+
+    // Обработчик показа/скрытия мобильного меню
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Получаем корзину из localStorage или инициализируем пустую
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const container = document.getElementById('cart-items');
+    const emptyMsg = document.getElementById('empty-msg');
+    const summary = document.getElementById('summary');
+    const totalPriceEl = document.getElementById('total-price');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    /**
+     * Функция отрисовки содержимого корзины
+     */
+    function renderCart() {
+      container.innerHTML = '';
+      // Если корзина пуста, показываем сообщение и скрываем кнопки
+      if (cart.length === 0) {
+        emptyMsg.classList.remove('hidden');
+        summary.classList.add('hidden');
+        checkoutBtn.classList.add('hidden');
+        return;
+      }
+      // Иначе показываем содержимое
+      emptyMsg.classList.add('hidden');
+      summary.classList.remove('hidden');
+      checkoutBtn.classList.remove('hidden');
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        const subtotal = item.price * (item.qty || 1);
+        total += subtotal;
+
+        const div = document.createElement('div');
+        div.className = 'flex justify-between items-center border-b pb-4';
+        div.innerHTML = `
+          <div class="flex items-center space-x-4">
+            <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
+            <div>
+              <h3 class="text-lg font-semibold">${item.name}</h3>
+              <p class="text-sm text-gray-600">${item.price.toLocaleString()} ₸</p>
+            </div>
+          </div>
+          <div class="text-lg font-bold">${subtotal.toLocaleString()} ₸</div>
+        `;
+        container.appendChild(div);
+      });
+      // Отображаем общую сумму
+      totalPriceEl.textContent = total.toLocaleString() + ' ₸';
+    }
+
+    // Показать модальное окно оплаты
+    checkoutBtn.addEventListener('click', () => {
+      document.getElementById('payment-modal').classList.remove('hidden');
+    });
+    // Скрыть модальное окно оплаты
+    document.getElementById('cancel-btn').addEventListener('click', () => {
+      document.getElementById('payment-modal').classList.add('hidden');
+    });
+
+    const methodSelect = document.getElementById('method');
+    const cardInfoBlock = document.getElementById('card-info');
+
+    /**
+     * Переключение видимости полей ввода карты в зависимости от способа оплаты
+     */
+    function toggleCardFields() {
+      if (methodSelect.value === 'Карта') {
+        cardInfoBlock.classList.remove('hidden');
+        cardInfoBlock.querySelectorAll('input').forEach(input => input.required = true);
+      } else {
+        cardInfoBlock.classList.add('hidden');
+        cardInfoBlock.querySelectorAll('input').forEach(input => input.required = false);
+      }
+    }
+    methodSelect.addEventListener('change', toggleCardFields);
+    // Инициализируем состояние полей при загрузке страницы
+    toggleCardFields();
+
+    // Обработка отправки формы оплаты
+    document.getElementById('payment-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const method = methodSelect.value;
+      const address = document.getElementById('address').value;
+      const total = totalPriceEl.textContent;
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      orders.push({ id: Date.now(), date: new Date().toLocaleDateString(), total, method, address, status: 'Ожидает подтверждения' });
+      localStorage.setItem('orders', JSON.stringify(orders));
+      // Очищаем корзину после оформления
+      localStorage.removeItem('cart');
+      cart = [];
+      renderCart();
+      document.getElementById('payment-modal').classList.add('hidden');
+      notyf.success('Заказ оформлен!');
+      // Перенаправление на страницу аккаунта через 1.5 секунды
+      setTimeout(() => location.href = 'account.html', 1500);
+    });
+
+    // Первичная отрисовка корзины при загрузке страницы
+    renderCart();
+  </script>
+</body>
+</html>

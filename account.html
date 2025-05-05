@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- Объявляем тип документа как HTML5 -->
+<html lang="ru">
+<head>
+  <!-- Устанавливаем кодировку документа -->
+  <meta charset="utf-8" />
+  <!-- Обеспечиваем адаптивность на мобильных устройствах -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Заголовок страницы -->
+  <title>Blessy — Аккаунт</title>
+  <!-- Подключаем шрифт Manrope из Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Подключаем Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Подключаем стили и скрипт библиотеки уведомлений Notyf -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+</head>
+<body class="bg-[#f5f8ff] text-gray-800 font-[Manrope] flex flex-col min-h-screen">
+  <!-- Основная обёртка страницы: фон, цвет текста, шрифт и флекс-контейнер -->
+
+  <!-- Header -->
+  <header class="bg-white/90 backdrop-blur-md shadow-sm fixed inset-x-0 top-0 z-50">
+    <!-- Полупрозрачный хедер с эффектом размытия и тенью -->
+    <div class="max-w-screen-xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Логотип и название сайта -->
+      <a href="index.html" class="text-2xl font-extrabold text-blue-800">Blessy</a>
+      <!-- Навигация для десктопа -->
+      <nav class="hidden md:flex space-x-6 font-semibold text-gray-700 font-[Manrope]">
+        <a href="index.html" class="hover:text-blue-800">Главная</a>
+        <a href="catalog.html" class="hover:text-blue-800">Каталог</a>
+        <a href="about.html" class="hover:text-blue-800">О нас</a>
+        <a href="contact.html" class="hover:text-blue-800">Контакты</a>
+        <a href="blog.html" class="hover:text-blue-800">Блог</a>
+        <a href="cart.html" class="hover:text-blue-800">Корзина</a>
+        <a href="account.html" class="text-blue-800">Аккаунт</a>
+      </nav>
+      <!-- Кнопка-бургер для мобильного меню -->
+      <button id="menu-btn" class="md:hidden text-gray-800 focus:outline-none">
+        <!-- Иконка бургер-меню -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <!-- Мобильное меню, скрыто по умолчанию -->
+    <div id="mobile-menu" class="hidden bg-white border-t px-6 py-4 space-y-2 text-gray-800 font-semibold font-[Manrope] md:hidden">
+      <a href="index.html" class="block hover:text-blue-800">Главная</a>
+      <a href="catalog.html" class="block hover:text-blue-800">Каталог</a>
+      <a href="about.html" class="block hover:text-blue-800">О нас</a>
+      <a href="contact.html" class="block hover:text-blue-800">Контакты</a>
+      <a href="blog.html" class="block hover:text-blue-800">Блог</a>
+      <a href="cart.html" class="block hover:text-blue-800">Корзина</a>
+      <a href="account.html" class="block text-blue-800 font-bold">Аккаунт</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-32 pb-12 px-4 max-w-3xl mx-auto w-full">
+    <!-- Контейнер для контента страницы аккаунта -->
+    <div class="bg-white rounded-2xl shadow-lg p-6">
+      <!-- Вкладки переключения формы регистрации/входа -->
+      <div id="tabs" class="flex mb-6 border-b">
+        <button id="tab-register-btn" class="flex-1 py-2 text-center font-semibold border-b-2 border-blue-800 text-blue-800">Регистрация</button>
+        <button id="tab-login-btn" class="flex-1 py-2 text-center font-semibold text-gray-500 hover:text-blue-800 border-b-2 border-transparent">Вход</button>
+      </div>
+
+      <!-- Контейнер для форм и меню аккаунта -->
+      <div id="auth-container">
+        <!-- Форма регистрации -->
+        <form id="registration-form" class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <input id="first-name" type="text" placeholder="Имя" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-300" />
+            <!-- Поле ввода имени -->
+            <input id="last-name" type="text" placeholder="Фамилия" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-300" />
+            <!-- Поле ввода фамилии -->
+          </div>
+          <input id="email" type="email" placeholder="Email" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-300" />
+          <!-- Поле ввода email -->
+          <input id="password" type="password" placeholder="Пароль (минимум 8 символов)" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-300" />
+          <!-- Поле ввода пароля -->
+          <button type="submit" class="w-full py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-700 transition">Зарегистрироваться</button>
+          <!-- Кнопка отправки формы регистрации -->
+        </form>
+
+        <!-- Форма входа -->
+        <form id="login-form" class="space-y-4 hidden">
+          <input id="login-email" type="email" placeholder="Email" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-300" />
+          <!-- Поле ввода email для входа -->
+          <input id="login-password" type="password" placeholder="Пароль" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-300" />
+          <!-- Поле ввода пароля для входа -->
+          <button type="submit" class="w-full py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-700 transition">Войти</button>
+          <!-- Кнопка отправки формы входа -->
+        </form>
+
+        <!-- Меню зарегистрированного пользователя -->
+        <div id="account-menu" class="hidden">
+          <!-- Приветственное сообщение -->
+          <h2 class="text-xl font-semibold mb-4">Добро пожаловать, <span id="user-name"></span>!</h2>
+          <!-- Навигация по профилю и заказам -->
+          <nav class="flex space-x-4 mb-6">
+            <button id="profile-link" class="py-2 px-4 rounded-lg hover:bg-gray-100">Профиль</button>
+            <button id="orders-link" class="py-2 px-4 rounded-lg hover:bg-gray-100">Мои заказы</button>
+            <button id="logout-btn" class="py-2 px-4 rounded-lg text-red-600 hover:bg-gray-100">Выйти</button>
+          </nav>
+
+          <!-- Секция редактирования профиля -->
+          <div id="profile-section" class="space-y-4">
+            <input id="profile-first-name" type="text" placeholder="Имя" class="w-full px-4 py-2 border rounded-lg" />
+            <input id="profile-last-name" type="text" placeholder="Фамилия" class="w-full px-4 py-2 border rounded-lg" />
+            <input id="profile-email" type="email" placeholder="Email" class="w-full px-4 py-2 border rounded-lg" />
+            <button id="save-profile" class="w-full py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-700 transition">Сохранить профиль</button>
+          </div>
+
+          <!-- Секция просмотра заказов -->
+          <div id="orders-section" class="hidden space-y-2 mt-6">
+            <p id="orders-empty" class="text-gray-600">У вас пока нет заказов.</p>
+            <ul id="orders-list" class="space-y-2"></ul>
+            <button id="clear-orders" class="w-full text-red-600 hover:underline hidden">Очистить историю заказов</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#0d1117] text-white text-center text-sm py-3 shadow-inner mt-auto">
+    <!-- Копирайт -->
+    <div class="max-w-5xl mx-auto">© 2025 Blessy. Все права защищены.</div>
+  </footer>
+
+  <!-- Скрипт для управления логикой регистрации, входа и аккаунта -->
+  <script>
+    // Инициализация уведомлений Notyf
+    const notyf = new Notyf();
+    // Удобная функция для получения элементов по id
+    const el = id => document.getElementById(id);
+
+    // Показ формы регистрации
+    const showRegister = () => {
+      el('registration-form').classList.remove('hidden');
+      el('login-form').classList.add('hidden');
+      el('tabs').classList.remove('hidden');
+      el('account-menu').classList.add('hidden');
+      el('tab-register-btn').classList.add('border-blue-800', 'text-blue-800');
+      el('tab-register-btn').classList.remove('border-transparent', 'text-gray-500');
+      el('tab-login-btn').classList.remove('border-blue-800', 'text-blue-800');
+      el('tab-login-btn').classList.add('border-transparent', 'text-gray-500');
+    };
+
+    // Показ формы входа
+    const showLogin = () => {
+      el('login-form').classList.remove('hidden');
+      el('registration-form').classList.add('hidden');
+      el('tabs').classList.remove('hidden');
+      el('account-menu').classList.add('hidden');
+      el('tab-login-btn').classList.add('border-blue-800', 'text-blue-800');
+      el('tab-login-btn').classList.remove('border-transparent', 'text-gray-500');
+      el('tab-register-btn').classList.remove('border-blue-800', 'text-blue-800');
+      el('tab-register-btn').classList.add('border-transparent', 'text-gray-500');
+    };
+
+    // Показ меню аккаунта для авторизованного пользователя
+    const showAccount = () => {
+      el('tabs').classList.add('hidden');
+      el('registration-form').classList.add('hidden');
+      el('login-form').classList.add('hidden');
+      el('account-menu').classList.remove('hidden');
+      // Заполняем имя пользователя
+      el('user-name').textContent = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`;
+      el('profile-first-name').value = localStorage.getItem('userFirstName') || '';
+      el('profile-last-name').value = localStorage.getItem('userLastName') || '';
+      el('profile-email').value = localStorage.getItem('userEmail') || '';
+    };
+
+    // Привязываем кнопку выхода из аккаунта
+    const attachLogoutHandler = () => {
+      const logoutBtn = el('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.onclick = () => {
+          // Очищаем данные пользователя
+          localStorage.removeItem('loggedIn');
+          localStorage.removeItem('userFirstName');
+          localStorage.removeItem('userLastName');
+          localStorage.removeItem('userEmail');
+          localStorage.removeItem('userPassword');
+          notyf.success('Вы вышли из аккаунта');
+          setTimeout(() => location.reload(), 1000);
+        };
+      }
+    };
+
+    // Логика открытия мобильного меню
+    el('menu-btn').onclick = () => el('mobile-menu').classList.toggle('hidden');
+    // Привязка вкладок регистрации/входа
+    el('tab-register-btn').onclick = showRegister;
+    el('tab-login-btn').onclick = showLogin;
+
+    // Обработка отправки формы регистрации
+    el('registration-form').onsubmit = e => {
+      e.preventDefault();
+      // Сохраняем данные пользователя в localStorage
+      localStorage.setItem('userFirstName', el('first-name').value);
+      localStorage.setItem('userLastName', el('last-name').value);
+      localStorage.setItem('userEmail', el('email').value);
+      localStorage.setItem('userPassword', el('password').value);
+      localStorage.setItem('loggedIn', 'true');
+      showAccount();
+      attachLogoutHandler();
+    };
+
+    // Обработка входа пользователя
+    el('login-form').onsubmit = e => {
+      e.preventDefault();
+      // Проверяем совпадение с сохранёнными данными
+      if (
+        el('login-email').value === localStorage.getItem('userEmail') &&
+        el('login-password').value === localStorage.getItem('userPassword')
+      ) {
+        localStorage.setItem('loggedIn', 'true');
+        showAccount();
+        attachLogoutHandler();
+      } else {
+        notyf.error('Неверный email или пароль');
+      }
+    };
+
+    // Показ секции профиля
+    el('profile-link').onclick = () => {
+      el('profile-section').classList.remove('hidden');
+      el('orders-section').classList.add('hidden');
+    };
+
+    // Показ секции заказов и загрузка списка
+    el('orders-link').onclick = () => {
+      el('profile-section').classList.add('hidden');
+      el('orders-section').classList.remove('hidden');
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      const list = el('orders-list');
+      const clearBtn = el('clear-orders');
+      list.innerHTML = '';
+
+      if (!orders.length) {
+        el('orders-empty').classList.remove('hidden');
+        clearBtn.classList.add('hidden');
+      } else {
+        el('orders-empty').classList.add('hidden');
+        clearBtn.classList.remove('hidden');
+        orders.forEach(o => {
+          const li = document.createElement('li');
+          li.className = 'p-4 border rounded-lg';
+          li.textContent = `Заказ #${o.id} — ${o.date} — ${o.total}`;
+          list.appendChild(li);
+        });
+      }
+    };
+
+    // Очистка истории заказов
+    el('clear-orders').onclick = () => {
+      localStorage.removeItem('orders');
+      notyf.success('История заказов очищена');
+      el('orders-list').innerHTML = '';
+      el('orders-empty').classList.remove('hidden');
+      el('clear-orders').classList.add('hidden');
+    };
+
+    // Сохранение изменений профиля
+    el('save-profile').onclick = () => {
+      localStorage.setItem('userFirstName', el('profile-first-name').value);
+      localStorage.setItem('userLastName', el('profile-last-name').value);
+      localStorage.setItem('userEmail', el('profile-email').value);
+      notyf.success('Профиль сохранён');
+      showAccount();
+    };
+
+    // При загрузке страницы проверяем статус авторизации
+    if (localStorage.getItem('loggedIn') === 'true') {
+      showAccount();
+      attachLogoutHandler();
+    } else {
+      showRegister();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!-- Определение документа как HTML5 -->
+<!DOCTYPE html>
+<!-- Корневой элемент HTML с указанием языка страницы -->
+<html lang="ru">
+<head>
+  <!-- Установка кодировки символов -->
+  <meta charset="utf-8" />
+  <!-- Настройка viewport для адаптивного отображения -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Заголовок вкладки браузера -->
+  <title>Blessy — Контакты</title>
+  <!-- Подключение шрифта Manrope из Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet" />
+  <!-- Подключение иконок Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Подключение Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Встроенные стили для страницы -->
+  <style>
+    /* Общие стили для body */
+    body {
+      font-family: 'Manrope', sans-serif;      /* Шрифт страницы */
+      background-color: #f5f8ff;              /* Цвет фона */
+      margin: 0;                               /* Убираем отступы браузера */
+      color: #1a1a1a;                          /* Цвет текста */
+      min-height: 100vh;                      /* Минимальная высота экрана */
+      display: flex;                          /* Flex-контейнер для выравнивания */
+      flex-direction: column;                 /* Расположение элементов по вертикали */
+    }
+    /* Main растягивается на доступное пространство */
+    main {
+      flex: 1;
+    }
+    /* Стили для footer */
+    footer {
+      background-color: #1f2937; /* Темный фон */
+      color: white;             /* Белый текст */
+      text-align: center;       /* Выравнивание текста по центру */
+      padding: 0.5rem 0;        /* Вертикальные отступы */
+      font-size: 0.75rem;       /* Размер шрифта */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Шапка сайта (header) фиксируется сверху -->
+<header class="bg-white shadow-md fixed top-0 w-full z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Логотип Blessy -->
+    <div class="text-2xl font-extrabold text-blue-800">Blessy</div>
+    <!-- Навигация для десктопа -->
+    <nav class="hidden md:flex space-x-6 font-semibold text-gray-700">
+      <a href="index.html" class="hover:text-blue-800">Главная</a>
+      <a href="catalog.html" class="hover:text-blue-800">Каталог</a>
+      <a href="about.html" class="hover:text-blue-800">О нас</a>
+      <!-- Активная ссылка подсвечена синим и полужирным -->
+      <a href="contact.html" class="text-blue-800 font-extrabold">Контакты</a>
+      <a href="blog.html" class="hover:text-blue-800">Блог</a>
+      <a href="cart.html" class="hover:text-blue-800">Корзина</a>
+      <a href="account.html" class="hover:text-blue-800">Аккаунт</a>
+    </nav>
+    <!-- Кнопка гамбургер-меню для мобильных -->
+    <button id="menu-btn" class="md:hidden focus:outline-none">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </svg>
+    </button>
+  </div>
+  <!-- Мобильное меню, изначально скрыто -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-6 py-4 space-y-2 text-gray-700 font-semibold">
+    <a href="index.html" class="block hover:text-blue-800">Главная</a>
+    <a href="catalog.html" class="block hover:text-blue-800">Каталог</a>
+    <a href="about.html" class="block hover:text-blue-800">О нас</a>
+    <a href="contact.html" class="block text-blue-800 font-extrabold">Контакты</a>
+    <a href="blog.html" class="block hover:text-blue-800">Блог</a>
+    <a href="cart.html" class="block hover:text-blue-800">Корзина</a>
+    <a href="account.html" class="block hover:text-blue-800">Аккаунт</a>
+  </div>
+</header>
+
+<!-- Основная часть страницы -->
+<main class="pt-36 px-4 sm:px-6 pb-24 w-full flex justify-center">
+  <!-- Сетка из двух колонок на десктопе -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full items-stretch min-h-[500px]">
+
+    <!-- Блок с контактной информацией -->
+    <div class="bg-white rounded-2xl shadow p-6 space-y-6 flex flex-col justify-between h-full">
+      <div>
+        <!-- Заголовок секции -->
+        <h2 class="text-2xl font-bold mb-6">Связаться с нами</h2>
+        <div class="space-y-6 text-gray-700">
+          <!-- Адрес -->
+          <div class="flex items-start gap-4">
+            <i class="fas fa-map-marker-alt text-2xl text-blue-600 mt-1"></i>
+            <div>
+              <p class="font-semibold">Адрес:</p>
+              <p>г. Петропавловск, ул. Примерная, д. 10</p>
+            </div>
+          </div>
+          <!-- Телефон -->
+          <div class="flex items-start gap-4">
+            <i class="fas fa-phone-alt text-2xl text-blue-600 mt-1"></i>
+            <div>
+              <p class="font-semibold">Телефон:</p>
+              <a href="tel:+77001234567" class="hover:underline text-blue-600">+7 (700) 123-45-67</a>
+            </div>
+          </div>
+          <!-- Email -->
+          <div class="flex items-start gap-4">
+            <i class="fas fa-envelope text-2xl text-blue-600 mt-1"></i>
+            <div>
+              <p class="font-semibold">Email:</p>
+              <a href="mailto:info@blessy.ru" class="hover:underline text-blue-600">info@blessy.ru</a>
+            </div>
+          </div>
+          <!-- Социальные сети -->
+          <div class="flex items-start gap-4">
+            <i class="fas fa-share-alt text-2xl text-blue-600 mt-1"></i>
+            <div>
+              <p class="font-semibold">Соцсети:</p>
+              <div class="flex items-center space-x-4 mt-2">
+                <!-- Ссылки на соцсети с иконками -->
+                <a href="https://vk.com/blessy" target="_blank"><i class="fab fa-vk text-xl hover:text-blue-600"></i></a>
+                <a href="https://instagram.com/blessy" target="_blank"><i class="fab fa-instagram text-xl hover:text-blue-600"></i></a>
+                <a href="https://facebook.com/blessy" target="_blank"><i class="fab fa-facebook-f text-xl hover:text-blue-600"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Форма обратной связи -->
+    <form id="contact-form" class="bg-white rounded-2xl shadow p-6 space-y-5 w-full max-w-md flex flex-col justify-between h-full">
+      <div>
+        <!-- Заголовок формы -->
+        <h2 class="text-2xl font-bold mb-6">Напишите нам</h2>
+        <!-- Поле ввода имени -->
+        <div>
+          <label for="name" class="block text-sm font-medium">Ваше имя</label>
+          <input id="name" name="name" type="text" required class="w-full mt-1 rounded-lg border border-gray-300 focus:border-blue-600 focus:ring-1 focus:ring-blue-200 px-4 py-2" />
+        </div>
+        <!-- Поле ввода Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium">Email</label>
+          <input id="email" name="email" type="email" required class="w-full mt-1 rounded-lg border border-gray-300 focus:border-blue-600 focus:ring-1 focus:ring-blue-200 px-4 py-2" />
+        </div>
+        <!-- Поле textarea для сообщения -->
+        <div>
+          <label for="message" class="block text-sm font-medium">Сообщение</label>
+          <textarea id="message" name="message" rows="4" required class="w-full mt-1 rounded-lg border border-gray-300 focus:border-blue-600 focus:ring-1 focus:ring-blue-200 px-4 py-2"></textarea>
+      </div>
+      </div>
+      <!-- Кнопка отправки формы -->
+      <button type="submit" class="w-full bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">Отправить</button>
+    </form>
+  </div>
+</main>
+
+<!-- Модальное окно после отправки -->
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-xl p-6 shadow-xl text-center max-w-xs w-full">
+    <h3 class="text-lg font-semibold mb-2">Сообщение отправлено!</h3>
+    <p class="text-sm text-gray-600">Мы свяжемся с вами в ближайшее время.</p>
+    <!-- Кнопка закрытия модалки -->
+    <button onclick="closeModal()" class="mt-4 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700">Закрыть</button>
+  </div>
+</div>
+
+<!-- Нижний колонтитул -->
+<footer class="bg-gray-900 text-white text-center text-sm py-4 mt-auto">© 2025 Blessy. Все права защищены.</footer>
+
+<script>
+  // Переключение мобильного меню по кнопке
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+  // Элементы формы и модального окна
+  const form = document.getElementById('contact-form');
+  const modal = document.getElementById('modal');
+  const nameField = document.getElementById('name');
+  const emailField = document.getElementById('email');
+  const messageField = document.getElementById('message');
+
+  // Регулярное выражение запрещённых символов
+  const forbiddenChars = /[\\\/\"'<>&:{}\[\]()]/g;
+
+  // Функция для экранирования нежелательных символов
+  function sanitizeInput(str) {
+    return str.replace(/\\/g, '\\u005C')
+      .replace(/\//g, '\\u002F')
+      .replace(/"/g, '\\u0022')
+      .replace(/'/g, '\\u0027')
+      .replace(/</g, '\\u003C')
+      .replace(/>/g, '\\u003E')
+      .replace(/&/g, '\\u0026')
+      .replace(/:/g, '\\u003A')
+      .replace(/{/g, '\\u007B')
+      .replace(/}/g, '\\u007D')
+      .replace(/\[/g, '\\u005B')
+      .replace(/\]/g, '\\u005D')
+      .replace(/\(/g, '\\u0028')
+      .replace(/\)/g, '\\u0029');
+  }
+
+  // Добавление валидации на ввод каждого поля
+  function addValidation(field) {
+    field.addEventListener('input', () => {
+      if (forbiddenChars.test(field.value)) {
+        field.setCustomValidity("Недопустимые символы: \\ / \" ' < > & : { } [ ] ( )");
+        field.reportValidity();
+      } else {
+        field.setCustomValidity("");
+      }
+    });
+  }
+
+  // Применяем валидацию ко всем полям
+  [nameField, emailField, messageField].forEach(addValidation);
+
+  // Обработка отправки формы
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // Предотвращаем стандартную отправку
+    const name = sanitizeInput(nameField.value);
+    const email = sanitizeInput(emailField.value);
+    const message = sanitizeInput(messageField.value);
+    console.log("Имя:", name);
+    console.log("Email:", email);
+    console.log("Сообщение:", message);
+    modal.classList.remove('hidden'); // Показываем модалку
+    form.reset(); // Сбрасываем поля формы
+  });
+
+  // Закрытие модального окна
+  function closeModal() {
+    modal.classList.add('hidden');
+  }
+</script>
+
+</body>
+</html>

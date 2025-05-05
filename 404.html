@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- Объявляем тип документа как HTML5 -->
+<html lang="ru">
+<head>
+  <!-- Устанавливаем кодировку документа -->
+  <meta charset="utf-8" />
+  <!-- Обеспечиваем адаптивность на мобильных устройствах -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Заголовок вкладки браузера -->
+  <title>404 — Страница не найдена</title>
+  <!-- Подключаем шрифт Manrope из Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Подключаем Tailwind CSS для утилитарных стилей -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Стили для всего body: шрифт, фон, центрирование содержимого */
+    body {
+      font-family: 'Manrope', sans-serif; /* Семейство шрифтов */
+      background: #f8f9fa;              /* Светло-серый фон */
+      margin: 0;                        /* Убираем отступы браузера */
+      display: flex;                   /* Флекс-контейнер для центрирования */
+      align-items: center;             /* Вертикальное центрирование */
+      justify-content: center;         /* Горизонтальное центрирование */
+      height: 100vh;                   /* Высота экрана */
+      text-align: center;              /* Выравнивание текста по центру */
+    }
+    /* Контейнер с анимацией появления */
+    .container {
+      animation: fadeIn 1s ease-out;   /* Плавное возникновение при загрузке */
+    }
+    /* Ключевые кадры для анимации fadeIn */
+    @keyframes fadeIn {
+      from { opacity: 0; } /* Начальное состояние: полностью прозрачный */
+      to   { opacity: 1; } /* Конечное состояние: полностью видимый */
+    }
+  </style>
+</head>
+<body>
+  <!-- Основной контейнер 404-страницы -->
+  <div class="container px-6">
+    <!-- Код ошибки -->
+    <h1 class="text-9xl font-extrabold text-blue-800">404</h1>
+    <!-- Основное сообщение об ошибке -->
+    <p class="text-2xl font-semibold mt-4">Упс! Страница не найдена.</p>
+    <!-- Дополнительное пояснение -->
+    <p class="mt-2 text-gray-600">Возможно, она была удалена или вы ошиблись в адресе.</p>
+    <!-- Ссылка назад на главную страницу -->
+    <a href="index.html" class="inline-block mt-6 px-5 py-3 bg-blue-800 text-white rounded-lg hover:bg-blue-700 transition">Вернуться на главную</a>
+  </div>
+</body>
+</html>
